@@ -1,7 +1,6 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
-      <span class="card-title">{{ "CRM_Title" | localize }}</span>
       <div class="input-field">
         <input
           id="email"
@@ -54,7 +53,6 @@
       <div>
         <button class="btn waves-effect waves-light auth-submit" type="submit">
           {{ "Login" | localize }}
-          <i class="material-icons right">send</i>
         </button>
       </div>
 
@@ -63,6 +61,7 @@
         <router-link to="/register">{{ "Register" | localize }}</router-link>
       </p>
     </div>
+    <div class="logo">FINPLAN</div>
   </form>
 </template>
 
@@ -102,12 +101,8 @@ export default {
         password: this.password,
       };
 
-      try {
-        await this.$store.dispatch("login", formData);
-        this.$router.push("/");
-      } catch (e) {
-        return;
-      }
+      await this.$store.dispatch("login", formData);
+      this.$router.push("/");
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
+    <div class="logo">FINPLAN</div>
     <div class="card-content">
-      <span class="card-title">{{ "CRM_Title" | localize }}</span>
       <div class="input-field">
         <input
           id="email"
@@ -17,13 +17,15 @@
         <small
           class="helper-text invalid"
           v-if="$v.email.$dirty && !$v.email.required"
-          >{{ "Message_EmailRequired" | localize }}</small
         >
+          {{ "Message_EmailRequired" | localize }}
+        </small>
         <small
           class="helper-text invalid"
           v-else-if="$v.email.$dirty && !$v.email.email"
-          >{{ "Message_EmailValid" | localize }}</small
         >
+          {{ "Message_EmailValid" | localize }}
+        </small>
       </div>
       <div class="input-field">
         <input
@@ -40,14 +42,16 @@
         <small
           class="helper-text invalid"
           v-if="$v.password.$dirty && !$v.password.required"
-          >{{ "Message_EnterPassword" | localize }}</small
         >
+          {{ "Message_EnterPassword" | localize }}
+        </small>
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.minLength"
-          >{{ "Message_MinLength" | localize }}
-          {{ $v.password.$params.minLength.min }}</small
         >
+          {{ "Message_MinLength" | localize }}
+          {{ $v.password.$params.minLength.min }}
+        </small>
       </div>
       <div class="input-field">
         <input
@@ -60,8 +64,9 @@
         <small
           class="helper-text invalid"
           v-if="$v.name.$dirty && !$v.name.required"
-          >{{ "Message_EnterName" | localize }}</small
         >
+          {{ "Message_EnterName" | localize }}
+        </small>
       </div>
       <p>
         <label>
@@ -77,7 +82,6 @@
           <i class="material-icons right">send</i>
         </button>
       </div>
-
       <p class="center">
         {{ "HasAccount" | localize }}
         <router-link to="/login">{{ "Login" | localize }}</router-link>
@@ -121,12 +125,8 @@ export default {
         name: this.name,
       };
 
-      try {
-        await this.$store.dispatch("register", formData);
-        this.$router.push("/");
-      } catch (e) {
-        return;
-      }
+      await this.$store.dispatch("register", formData);
+      this.$router.push("/");
     },
   },
 };

@@ -1,17 +1,14 @@
 <template>
-  <nav class="navbar orange lighten-1">
+  <nav class="navbar">
     <div class="nav-wrapper">
       <div class="navbar-left">
-        <a href="#" @click.prevent="$emit('click')">
-          <i class="material-icons black-text">dehaze</i>
-        </a>
-        <span class="black-text">{{ date | date("datetime") }}</span>
+        <span>{{ date | date("datetime") }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
         <li>
           <a
-            class="dropdown-trigger black-text"
+            class="dropdown-trigger"
             href="#"
             data-target="dropdown"
             ref="dropdown"
@@ -22,14 +19,13 @@
 
           <ul id="dropdown" class="dropdown-content">
             <li>
-              <router-link to="/profile" class="black-text">
+              <router-link to="/profile" class="">
                 <i class="material-icons">account_circle</i>
                 {{ "ProfileTitle" | localize }}
               </router-link>
             </li>
-            <li class="divider" tabindex="-1"></li>
             <li>
-              <a href="#" class="black-text" @click.prevent="logout">
+              <a href="#" class="" @click.prevent="logout">
                 <i class="material-icons">assignment_return</i>
                 {{ "Exit" | localize }}
               </a>
@@ -45,7 +41,7 @@
 <script>
 export default {
   data: () => ({
-    date: new Date()
+    date: new Date(),
   }),
   methods: {
     async logout() {
@@ -61,7 +57,7 @@ export default {
   mounted() {
     const interval = setInterval(() => {
       this.date = new Date();
-    }, 1000);
+    }, 60000);
     const dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false,
     });
@@ -75,3 +71,10 @@ export default {
   },
 };
 </script>
+<style>
+.navbar {
+  background: #161619;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0),
+    0 1px 5px 0 rgb(0 0 0 / 25%);
+}
+</style>

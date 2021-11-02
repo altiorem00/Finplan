@@ -2,20 +2,19 @@
   <div>
     <Loader v-if="loading" />
     <div class="app-main-layout" v-else>
-      <Navbar @click="isOpen = !isOpen" />
+      <div class="logo">FINPLAN</div>
+      <Navbar />
 
-      <Sidebar v-model="isOpen" :key="locale" />
+      <Sidebar :key="locale" />
 
-      <main class="app-content" :class="{ full: !isOpen }">
+      <main class="app-content">
         <div class="app-page">
-          <transition name="fade" mode="out-in">
-            <router-view />
-          </transition>
+          <router-view />
         </div>
       </main>
       <div class="fixed-action-btn" :key="locale + '1'">
         <router-link
-          class="btn-floating btn-large blue"
+          class="btn-floating btn-large"
           to="/record"
           v-tooltip="'CreateNewRecord'"
         >
@@ -39,7 +38,7 @@ export default {
   }),
   async mounted() {
     if (!this.$store.getters.info.bill || !this.$store.getters.info.name) {
-     await this.$store.dispatch("fetchInfo");
+      await this.$store.dispatch("fetchInfo");
     }
 
     this.loading = false;

@@ -1,24 +1,14 @@
-# Finplan
+# Financial planning application
 
-## Project setup
-```
-npm install
-```
+The project was completed at the training stage.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Functional:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- user registration
+- creating categories
+- creating records of expenses and incomes by category
+- history of spending and income
+- progress of financial goals
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 
+[Demo](https://altiorem00.github.io/Finplan/dist/)

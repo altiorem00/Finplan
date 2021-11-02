@@ -4,9 +4,7 @@
       <h3>{{'Menu_Planning'|localize}}</h3>
       <h4>{{info.bill | currency('RUB')}}</h4>
     </div>
-
     <Loader v-if="loading"/>
-
     <p class="center" v-else-if="!categories.length">
       {{'NoCategories'|localize}}.
       <router-link to="/categories">{{'AddFirst'|localize}}</router-link>
@@ -21,7 +19,6 @@
         <div class="progress" v-tooltip.noloc="cat.tooltip">
           <div
             class="determinate"
-            :class="[cat.progressColor]"
             :style="{width: cat.progressPercent + '%'}"
           ></div>
         </div>
@@ -48,7 +45,7 @@ export default {
   computed: {
     ...mapGetters(['info'])
   },
-  async mounted() {
+  async created() {
     const records = await this.$store.dispatch('fetchRecords')
     const categoires = await this.$store.dispatch('fetchCategories')
 
@@ -62,9 +59,6 @@ export default {
 
       const percent = (100 * spend) / cat.limit
       const progressPercent = percent > 100 ? 100 : percent
-      const progressColor =
-        percent < 60 ? 'green' : percent < 100 ? 'yellow' : 'red'
-
       const tooltipValue = cat.limit - spend
       const tooltip = `${
         tooltipValue < 0 ? localizeFilter('MoreThan') : localizeFilter('Stayed')
@@ -73,7 +67,6 @@ export default {
       return {
         ...cat,
         progressPercent,
-        progressColor,
         spend,
         tooltip
       }
