@@ -11,4 +11,4 @@ The project was completed at the training stage.
 - progress of financial goals
 
 ## 
-[Demo](https://altiorem00.github.io/Finplan/dist/)
+[Demo](http://a90918x7.beget.tech/)
